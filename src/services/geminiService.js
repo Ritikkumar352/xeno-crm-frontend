@@ -20,7 +20,8 @@ Rules:
 const generateResponseWithGemini = async (prompt, campaignType) => {
   // const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const API_KEY ="AIzaSyAk2dXadtL0VdfqNRgzTGlNfrMxtWt50XM";
-  
+  // const API_KEY = process.env.VITE_GEMINI_API_KEY;
+  console.log(API_KEY);
 
   if (!API_KEY) {
     throw new Error("VITE_GEMINI_API_KEY is not set in environment variables.");

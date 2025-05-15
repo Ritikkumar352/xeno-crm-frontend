@@ -6,6 +6,9 @@ This project is a frontend starter template using Vite, React, TypeScript, Tailw
 
 ---
 
+## Update
+-- Updated with different model of gemini -- `flash1.5` 
+
 ## Getting Started
 
 ### 1. Clone the Repository
