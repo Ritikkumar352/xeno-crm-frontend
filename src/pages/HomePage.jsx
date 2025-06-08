@@ -27,7 +27,7 @@ const HomePage = () => {
       <header className="bg-white border-b py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-brand-primary">Xeno CRM</h1>
+            <h1 className="text-2xl font-bold text-brand-primary">  CRM</h1>
           </div>
           <Button onClick={handleLogin} className="bg-brand-primary hover:bg-brand-primary/90">
             Sign In with Google
@@ -98,7 +98,7 @@ const HomePage = () => {
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© 2025 Xeno CRM Platform. All rights reserved.</p>
+            <p>© 2025   CRM Platform. All rights reserved.</p>
             <div className="mt-4 md:mt-0">
               <a href="#" className="text-gray-300 hover:text-white mr-4">Terms</a>
               <a href="#" className="text-gray-300 hover:text-white mr-4">Privacy</a>

@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }) => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <Link to="/dashboard" className="text-2xl font-bold text-brand-primary">
-                Xeno CRM
+                  CRM
               </Link>
             </div>
             
@@ -156,7 +156,7 @@ const DashboardLayout = ({ children }) => {
       <footer className="bg-white border-t py-4">
         <div className="container mx-auto px-4">
           <p className="text-sm text-gray-500 text-center">
-            © 2025 Xeno CRM Platform. All rights reserved.
+            © 2025   CRM Platform. All rights reserved.
           </p>
         </div>
       </footer>

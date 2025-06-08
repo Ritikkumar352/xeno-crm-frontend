@@ -1,4 +1,4 @@
-# xeno-crm-frontend
+#  -crm-frontend
 
 ## Vite + React + ShadCN + TypeScript Starter
 
@@ -13,8 +13,8 @@ This project is a frontend starter template using Vite, React, TypeScript, Tailw
 
 ### 1. Clone the Repository
 
-```git clone https://github.com/Ritikkumar352/xeno-crm-frontend.git```
-- cd xeno-crm-frontend
+```git clone https://github.com/Ritikkumar352/ -crm-frontend.git```
+- cd  -crm-frontend
 
 
 ### 2. Install Dependencies

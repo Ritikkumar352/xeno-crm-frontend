@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initializeApp } from "firebase/app";
@@ -10,16 +9,15 @@ import {
   signOut 
 } from "firebase/auth";
 
-
+// Use environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyCUbw9Xnqdbc1PfTUjASRRJZfX_H60iyU8",
-  authDomain: "mini-crm-1c689.firebaseapp.com",
-  projectId: "mini-crm-1c689",
-  storageBucket: "mini-crm-1c689.firebasestorage.app",
-  messagingSenderId: "180514214165",
-  appId: "1:180514214165:web:0d9cc90e299e143430991c"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
-
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -35,8 +33,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  
-  // Listen for auth state changes
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -44,7 +41,7 @@ export function AuthProvider({ children }) {
           id: user.uid,
           name: user.displayName,
           email: user.email,
-          photoURL: user.photoURL || "https://ui-avatars.com/api/?name=" + encodeURIComponent(user.displayName) + "&background=4F46E5&color=fff"
+          photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=4F46E5&color=fff`,
         };
         setCurrentUser(userData);
       } else {
@@ -52,72 +49,65 @@ export function AuthProvider({ children }) {
       }
       setLoading(false);
     });
-    
+
     return unsubscribe;
   }, []);
-  
-  // Sign in with Google OAuth (real)
+
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      
-      // Get user data from result
       const user = result.user;
       const userData = {
         id: user.uid,
         name: user.displayName,
         email: user.email,
-        photoURL: user.photoURL || "https://ui-avatars.com/api/?name=" + encodeURIComponent(user.displayName) + "&background=4F46E5&color=fff"
+        photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=4F46E5&color=fff`,
       };
-      
+
       setCurrentUser(userData);
-      
+
       toast({
         title: "Login successful",
         description: `Welcome, ${userData.name}!`,
       });
-      
+
       return userData;
     } catch (error) {
       console.error("Error signing in with Google:", error);
-      
       toast({
         title: "Login failed",
         description: error.message || "Could not sign in with Google. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
-      
       return null;
     }
   };
-  
+
   const logout = async () => {
     try {
       await signOut(auth);
       setCurrentUser(null);
-      
       toast({
         title: "Logged out",
         description: "You have been logged out successfully.",
       });
     } catch (error) {
       console.error("Error signing out:", error);
-      
       toast({
         title: "Logout failed",
         description: "Could not sign out. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
-  
+
   const value = {
     currentUser,
     signInWithGoogle,
     logout,
-    loading
+    loading,
   };
-  
+
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}
